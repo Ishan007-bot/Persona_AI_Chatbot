@@ -1,40 +1,187 @@
+/* ============================================
+   PERSONA AI — DESIGN SYSTEM
+   "Command Center" Theme
+   ============================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+/* ============================================
+   CSS CUSTOM PROPERTIES (DESIGN TOKENS)
+   ============================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Base Colors --- */
+  --bg-primary: #07070e;
+  --bg-secondary: #0d0d1a;
+  --bg-tertiary: #12122a;
+  --bg-surface: rgba(18, 18, 42, 0.6);
+  --bg-surface-hover: rgba(28, 28, 60, 0.7);
+
+  --text-primary: #eaeaf0;
+  --text-secondary: #9494b8;
+  --text-muted: #5a5a7a;
+  --text-inverse: #07070e;
+
+  /* --- Persona: Anshuman (Electric Violet) --- */
+  --anshuman-primary: #6C63FF;
+  --anshuman-secondary: #8B83FF;
+  --anshuman-glow: rgba(108, 99, 255, 0.35);
+  --anshuman-glow-strong: rgba(108, 99, 255, 0.6);
+  --anshuman-bg-tint: rgba(108, 99, 255, 0.05);
+  --anshuman-gradient: linear-gradient(135deg, #6C63FF 0%, #a78bfa 100%);
+
+  /* --- Persona: Abhimanyu (Neon Emerald) --- */
+  --abhimanyu-primary: #00E676;
+  --abhimanyu-secondary: #69F0AE;
+  --abhimanyu-glow: rgba(0, 230, 118, 0.35);
+  --abhimanyu-glow-strong: rgba(0, 230, 118, 0.6);
+  --abhimanyu-bg-tint: rgba(0, 230, 118, 0.05);
+  --abhimanyu-gradient: linear-gradient(135deg, #00E676 0%, #00BFA5 100%);
+
+  /* --- Persona: Kshitij (Warm Coral) --- */
+  --kshitij-primary: #FF6B6B;
+  --kshitij-secondary: #FF8E8E;
+  --kshitij-glow: rgba(255, 107, 107, 0.35);
+  --kshitij-glow-strong: rgba(255, 107, 107, 0.6);
+  --kshitij-bg-tint: rgba(255, 107, 107, 0.05);
+  --kshitij-gradient: linear-gradient(135deg, #FF6B6B 0%, #ffa07a 100%);
+
+  /* --- Active Persona (defaults to Anshuman, overridden by JS) --- */
+  --accent-primary: var(--anshuman-primary);
+  --accent-secondary: var(--anshuman-secondary);
+  --accent-glow: var(--anshuman-glow);
+  --accent-glow-strong: var(--anshuman-glow-strong);
+  --accent-bg-tint: var(--anshuman-bg-tint);
+  --accent-gradient: var(--anshuman-gradient);
+
+  /* --- Glass / Surface --- */
+  --glass-bg: rgba(14, 14, 32, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.06);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  --glass-blur: 20px;
+
+  /* --- Typography --- */
+  --font-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --fs-xs: 0.7rem;
+  --fs-sm: 0.8rem;
+  --fs-base: 0.925rem;
+  --fs-md: 1.05rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 2rem;
+  --fs-3xl: 2.5rem;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* --- Spacing --- */
+  --sp-xs: 4px;
+  --sp-sm: 8px;
+  --sp-md: 12px;
+  --sp-lg: 16px;
+  --sp-xl: 24px;
+  --sp-2xl: 32px;
+  --sp-3xl: 48px;
+  --sp-4xl: 64px;
+
+  /* --- Borders --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px var(--accent-glow), 0 0 60px var(--accent-glow);
+
+  /* --- Transitions --- */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Z-Index --- */
+  --z-background: 0;
+  --z-surface: 10;
+  --z-header: 50;
+  --z-modal: 100;
+  --z-tooltip: 200;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   THEME OVERRIDES (set via data attributes)
+   ============================================ */
+[data-persona="anshuman"] {
+  --accent-primary: var(--anshuman-primary);
+  --accent-secondary: var(--anshuman-secondary);
+  --accent-glow: var(--anshuman-glow);
+  --accent-glow-strong: var(--anshuman-glow-strong);
+  --accent-bg-tint: var(--anshuman-bg-tint);
+  --accent-gradient: var(--anshuman-gradient);
+}
+
+[data-persona="abhimanyu"] {
+  --accent-primary: var(--abhimanyu-primary);
+  --accent-secondary: var(--abhimanyu-secondary);
+  --accent-glow: var(--abhimanyu-glow);
+  --accent-glow-strong: var(--abhimanyu-glow-strong);
+  --accent-bg-tint: var(--abhimanyu-bg-tint);
+  --accent-gradient: var(--abhimanyu-gradient);
+}
+
+[data-persona="kshitij"] {
+  --accent-primary: var(--kshitij-primary);
+  --accent-secondary: var(--kshitij-secondary);
+  --accent-glow: var(--kshitij-glow);
+  --accent-glow-strong: var(--kshitij-glow-strong);
+  --accent-bg-tint: var(--kshitij-bg-tint);
+  --accent-gradient: var(--kshitij-gradient);
+}
+
+/* ============================================
+   GLOBAL RESETS
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   height: 100%;
+  color-scheme: dark;
 }
 
 html,
 body {
   max-width: 100vw;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
-  min-height: 100%;
+  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-primary);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  color: var(--text-primary);
+  background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  line-height: 1.6;
+  transition: background var(--transition-slow);
 }
 
 a {
@@ -42,8 +189,289 @@ a {
   text-decoration: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   CUSTOM SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-muted);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-muted) transparent;
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* --- Glassmorphism --- */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+}
+
+.glass-hover:hover {
+  border-color: var(--glass-border-hover);
+  background: var(--bg-surface-hover);
+}
+
+/* --- Glow Effect --- */
+.glow {
+  box-shadow: var(--shadow-glow);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--accent-glow), 0 0 30px var(--accent-glow);
+}
+
+/* --- Text --- */
+.text-gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-mono {
+  font-family: var(--font-mono);
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Fade In */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade In Down */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse Glow */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--accent-glow-strong), 0 0 40px var(--accent-glow);
+  }
+}
+
+/* Typing Dots */
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+/* Float */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Spin */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Ripple */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Stagger Chips */
+@keyframes chipEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Neural Pulse (for typing indicator) */
+@keyframes neuralPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.8);
+    opacity: 0.8;
+  }
+}
+
+/* Glow Ring */
+@keyframes glowRing {
+  0% {
+    box-shadow: 0 0 0 0 var(--accent-glow-strong);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  :root {
+    --fs-base: 0.875rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.35rem;
+    --fs-2xl: 1.75rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :root {
+    --fs-base: 0.85rem;
+    --fs-lg: 1rem;
+    --fs-xl: 1.25rem;
+    --fs-2xl: 1.5rem;
+    --sp-xl: 16px;
+    --sp-2xl: 24px;
+    --sp-3xl: 32px;
   }
 }
