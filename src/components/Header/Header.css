@@ -1,0 +1,101 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--sp-md) var(--sp-xl);
+  background: rgba(7, 7, 14, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  animation: fadeInDown 0.5s ease-out;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+}
+
+.header-logo-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-sm);
+  color: var(--bg-primary);
+  transition: all var(--transition-slow);
+}
+
+.header-title {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all var(--transition-slow);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.active-persona-badge {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-xs) var(--sp-md);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  background: var(--bg-surface);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  transition: all var(--transition-base);
+}
+
+.active-persona-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-primary);
+  animation: pulseGlow 2s ease-in-out infinite;
+  transition: background var(--transition-slow);
+}
+
+.active-persona-name {
+  color: var(--accent-primary);
+  font-weight: var(--fw-medium);
+  transition: color var(--transition-slow);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header {
+    padding: var(--sp-sm) var(--sp-md);
+  }
+
+  .header-title {
+    font-size: var(--fs-base);
+  }
+
+  .active-persona-badge {
+    padding: var(--sp-xs) var(--sp-sm);
+  }
+}
