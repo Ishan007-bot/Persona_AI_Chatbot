@@ -6,7 +6,11 @@ export default function TypingIndicator({ persona }) {
   return (
     <div className="typing-indicator">
       <div className="typing-indicator-avatar">
-        {persona.name.charAt(0)}
+        <img
+          src={persona.avatar}
+          alt={persona.name}
+          style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }}
+        />
       </div>
       <div className="typing-indicator-bubble">
         <span className="typing-dot" />

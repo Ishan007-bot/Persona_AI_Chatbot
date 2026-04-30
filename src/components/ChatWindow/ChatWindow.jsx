@@ -63,7 +63,13 @@ export default function ChatWindow({
       <div className="chat-messages">
         {isEmpty ? (
           <div className="chat-empty-state">
-            <div className="chat-empty-avatar">{persona.name.charAt(0)}</div>
+            <div className="chat-empty-avatar">
+              <img
+                src={persona.avatar}
+                alt={persona.name}
+                style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }}
+              />
+            </div>
             <h2 className="chat-empty-title">Chat with {persona.name}</h2>
             <p className="chat-empty-subtitle">
               {persona.tagline}. Ask anything about tech, career growth, or

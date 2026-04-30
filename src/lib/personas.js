@@ -20,7 +20,7 @@ const personaConfigs = {
     name: "Anshuman Singh",
     role: "Co-Founder, Scaler & InterviewBit",
     tagline: "Building world-class engineers at Scaler",
-    avatar: "/avatars/anshuman.webp",
+    avatar: "/avatars/anshuman.jpg",
 
     colors: {
       primary: "#6C63FF",
@@ -103,7 +103,7 @@ Respond in 4–6 sentences. Be direct and conversational — no bullet points, n
     name: "Abhimanyu Saxena",
     role: "Co-Founder & CEO, Scaler & InterviewBit",
     tagline: "Scaling tech education for India and beyond",
-    avatar: "/avatars/abhimanyu.webp",
+    avatar: "/avatars/abhimanyu.jpeg",
 
     colors: {
       primary: "#00E676",
@@ -189,7 +189,7 @@ Respond in 4–6 sentences. Be warm, conversational, and personal — like a men
     name: "Kshitij Mishra",
     role: "Head of Instructors & Dean of Academics, Scaler",
     tagline: "Making engineering concepts click — on time, every time",
-    avatar: "/avatars/kshitij.webp",
+    avatar: "/avatars/kshitij.jpeg",
 
     colors: {
       primary: "#FF6B6B",

@@ -28,26 +28,41 @@
 }
 
 .header-logo-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-gradient);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid var(--glass-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-sm);
-  color: var(--bg-primary);
+  color: var(--accent-primary);
+  box-shadow: 0 0 15px var(--accent-glow), inset 0 0 10px rgba(255, 255, 255, 0.05);
   transition: all var(--transition-slow);
+}
+
+.header-title-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.1em;
 }
 
 .header-title {
   font-size: var(--fs-lg);
-  font-weight: var(--fw-bold);
+  font-weight: 800;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.header-title-highlight {
+  font-size: var(--fs-lg);
+  font-weight: 800;
   background: var(--accent-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-transform: uppercase;
   transition: all var(--transition-slow);
 }
 

@@ -30,10 +30,16 @@ export default function PersonaSwitcher({ activePersonaId, onSwitch }) {
               className="persona-tab-avatar"
               style={{ background: isActive ? "rgba(0,0,0,0.25)" : p.colors.primary + "33" }}
             >
-              {p.name.charAt(0)}
+              <img
+                src={p.avatar}
+                alt={p.name}
+                style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }}
+              />
             </div>
-            <span className="persona-tab-name">{p.name.split(" ")[0]}</span>
-            <span className="persona-tab-role">{p.role}</span>
+            <div className="persona-tab-info">
+              <span className="persona-tab-name">{p.name}</span>
+              <span className="persona-tab-role">{p.role}</span>
+            </div>
           </button>
         );
       })}

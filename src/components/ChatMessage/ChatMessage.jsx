@@ -8,7 +8,13 @@ export default function ChatMessage({ message, persona }) {
   return (
     <div className={`chat-message ${message.role}`}>
       <div className="chat-message-avatar">
-        {isUser ? "Y" : persona.name.charAt(0)}
+        {isUser ? "Y" : (
+          <img
+            src={persona.avatar}
+            alt={persona.name}
+            style={{ width: "100%", height: "100%", borderRadius: "50%", objectFit: "cover" }}
+          />
+        )}
       </div>
       <div
         className="chat-message-bubble"

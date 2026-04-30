@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
+import { BrainCircuit } from "lucide-react";
 import "./Header.css";
 
 export default function Header({ persona }) {
@@ -9,9 +9,12 @@ export default function Header({ persona }) {
       <div className="header-left">
         <div className="header-logo">
           <div className="header-logo-icon">
-            <Sparkles size={16} />
+            <BrainCircuit size={18} strokeWidth={2.5} />
           </div>
-          <span className="header-title">Persona AI</span>
+          <div className="header-title-container">
+            <span className="header-title">PERSONA</span>
+            <span className="header-title-highlight">AI</span>
+          </div>
         </div>
       </div>
 
