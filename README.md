@@ -10,7 +10,7 @@ A persona-based AI chatbot that lets you have real conversations with three Scal
 
 - **3 Distinct Personas** — Each with unique communication styles, vocabulary, and expertise areas
 - **Rich System Prompts** — 6-7 few-shot examples per persona, Chain-of-Thought reasoning, output formatting, and constraints
-- **Real-time Chat** — Powered by Google Gemini 2.0 Flash API
+- **Real-time Chat** — Powered by Google Gemini Flash Latest API
 - **Persona Switching** — Switch between personas with smooth transitions; conversation resets automatically
 - **Suggestion Chips** — Quick-start questions tailored to each persona
 - **Typing Indicator** — Animated dots with glow effects while the AI responds
@@ -27,7 +27,7 @@ A persona-based AI chatbot that lets you have real conversations with three Scal
 | Framework | Next.js 14+ (App Router) |
 | Language | JavaScript (JSX) |
 | Styling | Vanilla CSS (custom properties, keyframe animations) |
-| LLM API | Google Gemini 2.0 Flash |
+| LLM API | Google Gemini Flash Latest |
 | Icons | Lucide React |
 | Fonts | Space Grotesk + JetBrains Mono (Google Fonts) |
 | Deployment | Vercel |
