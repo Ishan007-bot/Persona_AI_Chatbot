@@ -8,35 +8,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getPersona, getSystemPrompt } from "@/lib/personas";
 import { PERSONAS } from "@/lib/constants";
 
-// Validate that the API key exists at startup
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-
-if (!GEMINI_API_KEY || GEMINI_API_KEY === "your_gemini_api_key_here") {
-  console.warn(
-    "⚠️  GEMINI_API_KEY is not set. Add it to .env.local to enable chat."
-  );
-}
-
-// Initialize the Gemini client
-const genAI = GEMINI_API_KEY ? new GoogleGenerativeAI(GEMINI_API_KEY) : null;
-
 // Valid persona IDs for validation
 const VALID_PERSONAS = new Set(Object.values(PERSONAS));
 
 export async function POST(request) {
   try {
-    // --- 1. Check API key ---
-    if (!genAI) {
-      return Response.json(
-        {
-          error:
-            "The AI service is not configured. Please add your Gemini API key to .env.local",
-        },
-        { status: 503 }
-      );
-    }
-
-    // --- 2. Parse & validate request body ---
+    // --- 1. Parse & validate request body ---
     let body;
     try {
       body = await request.json();
@@ -57,6 +34,29 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    // --- 2. Select API Key dynamically ---
+    let apiKey = process.env.GEMINI_API_KEY; // Fallback
+    
+    if (persona === "anshuman" && process.env.GEMINI_API_KEY_ANSHUMAN) {
+      apiKey = process.env.GEMINI_API_KEY_ANSHUMAN;
+    } else if (persona === "abhimanyu" && process.env.GEMINI_API_KEY_ABHIMANYU) {
+      apiKey = process.env.GEMINI_API_KEY_ABHIMANYU;
+    } else if (persona === "kshitij" && process.env.GEMINI_API_KEY_KSHITIJ) {
+      apiKey = process.env.GEMINI_API_KEY_KSHITIJ;
+    }
+
+    if (!apiKey) {
+      return Response.json(
+        {
+          error: "The AI service is not configured. Please add your Gemini API keys to .env.local",
+        },
+        { status: 503 }
+      );
+    }
+
+    // Initialize the Gemini client with the specific key
+    const genAI = new GoogleGenerativeAI(apiKey);
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return Response.json(
