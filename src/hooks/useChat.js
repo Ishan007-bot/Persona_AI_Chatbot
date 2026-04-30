@@ -69,12 +69,24 @@ export function useChat(personaId) {
     setIsLoading(false);
   }, []);
 
+  /**
+   * Actually delete the conversation history for the currently active persona
+   */
+  const clearActiveChat = useCallback(() => {
+    setMessagesByPersona((prev) => ({
+      ...prev,
+      [personaId]: []
+    }));
+    setError(null);
+  }, [personaId]);
+
   return {
     messages,
     isLoading,
     error,
     send,
     clearMessages,
+    clearActiveChat,
     setError,
   };
 }

@@ -22,6 +22,42 @@
   gap: var(--sp-xs);
 }
 
+.chat-header-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--sp-md);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.clear-chat-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xs);
+  padding: var(--sp-xs) var(--sp-sm);
+  background: var(--bg-surface);
+  color: #ffffff;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  font-size: var(--fs-sm);
+  font-family: inherit;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  backdrop-filter: blur(8px);
+}
+
+.clear-chat-btn:hover:not(:disabled) {
+  background: rgba(255, 107, 107, 0.1);
+  color: #ff6b6b;
+  border-color: rgba(255, 107, 107, 0.3);
+}
+
+.clear-chat-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* --- Empty State --- */
 .chat-empty-state {
   flex: 1;

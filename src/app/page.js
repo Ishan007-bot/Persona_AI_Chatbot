@@ -16,7 +16,7 @@ import "./page.css";
 export default function Home() {
   const { activePersonaId, persona, isTransitioning, switchPersona } =
     usePersona();
-  const { messages, isLoading, error, send, clearMessages, setError } =
+  const { messages, isLoading, error, send, clearMessages, clearActiveChat, setError } =
     useChat(activePersonaId);
 
   const handleSwitchPersona = useCallback(
@@ -60,6 +60,7 @@ export default function Home() {
             isLoading={isLoading}
             error={error}
             onSend={send}
+            onClear={clearActiveChat}
             onDismissError={handleDismissError}
             isTransitioning={isTransitioning}
           />

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Send } from "lucide-react";
+import { Send, Trash2 } from "lucide-react";
 import ChatMessage from "@/components/ChatMessage/ChatMessage";
 import TypingIndicator from "@/components/TypingIndicator/TypingIndicator";
 import SuggestionChips from "@/components/SuggestionChips/SuggestionChips";
@@ -15,6 +15,7 @@ export default function ChatWindow({
   isLoading,
   error,
   onSend,
+  onClear,
   onDismissError,
   isTransitioning,
 }) {
@@ -82,6 +83,18 @@ export default function ChatWindow({
           </div>
         ) : (
           <>
+            <div className="chat-header-actions">
+              <button 
+                className="clear-chat-btn" 
+                onClick={onClear}
+                title="Clear Chat History"
+                disabled={isLoading}
+                type="button"
+              >
+                <Trash2 size={14} />
+                <span>Clear Chat</span>
+              </button>
+            </div>
             {messages.map((msg, i) => (
               <ChatMessage key={i} message={msg} persona={persona} />
             ))}
