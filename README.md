@@ -2,7 +2,7 @@
 
 A persona-based AI chatbot that lets you have real conversations with three Scaler/InterviewBit personalities — **Anshuman Singh**, **Abhimanyu Saxena**, and **Kshitij Mishra** — each powered by deeply researched system prompts and the Google Gemini API.
 
-🔗 **Live Demo:** [Coming Soon — Vercel Deployment]
+🔗 **Live Demo:** [Persona AI Chatbot](https://persona-ai-chatbot-eta.vercel.app/)
 
 ---
 
