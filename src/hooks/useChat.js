@@ -11,9 +11,13 @@ import { sendMessage } from "@/lib/api";
 import { MAX_HISTORY_LENGTH } from "@/lib/constants";
 
 export function useChat(personaId) {
-  const [messages, setMessages] = useState([]);
+  // Store messages for ALL personas in a dictionary
+  const [messagesByPersona, setMessagesByPersona] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  // The active messages for the currently selected persona
+  const messages = messagesByPersona[personaId] || [];
 
   /**
    * Send a user message and get the persona's reply
@@ -24,17 +28,27 @@ export function useChat(personaId) {
       if (!content.trim() || isLoading) return;
 
       const userMessage = { role: "user", content: content.trim() };
-      setMessages((prev) => [...prev, userMessage]);
+      
+      // Optimistically update UI
+      setMessagesByPersona((prev) => ({
+        ...prev,
+        [personaId]: [...(prev[personaId] || []), userMessage]
+      }));
+      
       setError(null);
       setIsLoading(true);
 
       try {
-        // Build conversation history (trimmed to limit)
+        // Build conversation history using the currently active persona's messages
         const history = [...messages, userMessage].slice(-MAX_HISTORY_LENGTH);
         const reply = await sendMessage(personaId, history);
 
         const assistantMessage = { role: "assistant", content: reply };
-        setMessages((prev) => [...prev, assistantMessage]);
+        
+        setMessagesByPersona((prev) => ({
+          ...prev,
+          [personaId]: [...(prev[personaId] || []), assistantMessage]
+        }));
       } catch (err) {
         setError(err.message);
       } finally {
@@ -45,10 +59,12 @@ export function useChat(personaId) {
   );
 
   /**
-   * Clear all messages (used on persona switch)
+   * Clear all messages (used on persona switch - actually we don't want to clear them anymore!)
+   * We will leave this function here but it will just reset the error state
    */
   const clearMessages = useCallback(() => {
-    setMessages([]);
+    // Instead of deleting messages, we just clear the error/loading state
+    // when switching personas so they start fresh
     setError(null);
     setIsLoading(false);
   }, []);
