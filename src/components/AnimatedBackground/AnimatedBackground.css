@@ -1,0 +1,87 @@
+.animated-bg {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-background);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Gradient orbs that shift color per persona */
+.animated-bg .orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animated-bg .orb-1 {
+  width: 500px;
+  height: 500px;
+  top: -10%;
+  right: -5%;
+  background: var(--accent-primary);
+  animation: orbFloat1 12s ease-in-out infinite;
+}
+
+.animated-bg .orb-2 {
+  width: 400px;
+  height: 400px;
+  bottom: -10%;
+  left: -5%;
+  background: var(--accent-secondary);
+  animation: orbFloat2 15s ease-in-out infinite;
+}
+
+.animated-bg .orb-3 {
+  width: 300px;
+  height: 300px;
+  top: 40%;
+  left: 30%;
+  background: var(--accent-primary);
+  opacity: 0.08;
+  animation: orbFloat3 18s ease-in-out infinite;
+}
+
+/* Subtle grid overlay */
+.animated-bg .grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
+}
+
+/* Floating orb animations */
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(1.1); }
+  66% { transform: translate(20px, -20px) scale(0.95); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -40px) scale(0.9); }
+  66% { transform: translate(-20px, 20px) scale(1.05); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -30px) scale(1.15); }
+}
+
+/* Reduce on mobile for performance */
+@media (max-width: 768px) {
+  .animated-bg .orb {
+    filter: blur(60px);
+    opacity: 0.1;
+  }
+
+  .animated-bg .orb-1 { width: 300px; height: 300px; }
+  .animated-bg .orb-2 { width: 250px; height: 250px; }
+  .animated-bg .orb-3 { display: none; }
+  .animated-bg .grid-overlay { display: none; }
+}

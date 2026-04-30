@@ -6,6 +6,7 @@
 
 import { useCallback } from "react";
 import Header from "@/components/Header/Header";
+import AnimatedBackground from "@/components/AnimatedBackground/AnimatedBackground";
 import PersonaSwitcher from "@/components/PersonaSwitcher/PersonaSwitcher";
 import ChatWindow from "@/components/ChatWindow/ChatWindow";
 import { useChat } from "@/hooks/useChat";
@@ -31,6 +32,9 @@ export default function Home() {
 
   return (
     <div className="app-container" data-persona={activePersonaId}>
+      {/* Animated Background */}
+      <AnimatedBackground />
+
       {/* Header */}
       <Header persona={persona} />
 

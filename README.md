@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Persona AI — Chat with Scaler Personalities
 
-## Getting Started
+A persona-based AI chatbot that lets you have real conversations with three Scaler/InterviewBit personalities — **Anshuman Singh**, **Abhimanyu Saxena**, and **Kshitij Mishra** — each powered by deeply researched system prompts and the Google Gemini API.
 
-First, run the development server:
+🔗 **Live Demo:** [Coming Soon — Vercel Deployment]
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## ✨ Features
+
+- **3 Distinct Personas** — Each with unique communication styles, vocabulary, and expertise areas
+- **Rich System Prompts** — 6-7 few-shot examples per persona, Chain-of-Thought reasoning, output formatting, and constraints
+- **Real-time Chat** — Powered by Google Gemini 2.0 Flash API
+- **Persona Switching** — Switch between personas with smooth transitions; conversation resets automatically
+- **Suggestion Chips** — Quick-start questions tailored to each persona
+- **Typing Indicator** — Animated dots with glow effects while the AI responds
+- **Graceful Error Handling** — User-friendly messages for rate limits, invalid keys, and network errors
+- **Dark Theme** — Premium "Command Center" aesthetic with glassmorphism and animated gradient background
+- **Fully Responsive** — Works on desktop, tablet, and mobile
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 14+ (App Router) |
+| Language | JavaScript (JSX) |
+| Styling | Vanilla CSS (custom properties, keyframe animations) |
+| LLM API | Google Gemini 2.0 Flash |
+| Icons | Lucide React |
+| Fonts | Space Grotesk + JetBrains Mono (Google Fonts) |
+| Deployment | Vercel |
+
+---
+
+## 📁 Project Structure
+
+```
+persona-chatbot/
+├── public/
+│   └── avatars/              # Persona avatar images
+├── src/
+│   ├── app/
+│   │   ├── api/chat/
+│   │   │   └── route.js      # POST /api/chat — Gemini API endpoint
+│   │   ├── globals.css       # Design system (tokens, animations, theme)
+│   │   ├── layout.js         # Root layout with fonts and metadata
+│   │   ├── page.js           # Main page assembling all components
+│   │   └── page.css          # Page layout styles
+│   ├── components/
+│   │   ├── AnimatedBackground/
+│   │   ├── ChatMessage/
+│   │   ├── ChatWindow/
+│   │   ├── ErrorMessage/
+│   │   ├── Header/
+│   │   ├── PersonaSwitcher/
+│   │   ├── SuggestionChips/
+│   │   └── TypingIndicator/
+│   ├── hooks/
+│   │   ├── useChat.js        # Chat state management
+│   │   └── usePersona.js     # Persona switching logic
+│   └── lib/
+│       ├── api.js            # Client-side fetch wrapper
+│       ├── constants.js      # App-wide constants
+│       └── personas.js       # Persona configs + system prompts
+├── prompts.md                # Annotated system prompts documentation
+├── reflection.md             # 300-500 word reflection
+├── .env.example              # API key template
+├── .gitignore
+├── README.md
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
+- Node.js 18+ installed
+- A Google Gemini API key ([Get one here](https://aistudio.google.com/app/apikey))
 
-## Learn More
+### Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Ishan007-bot/Persona_AI_Chatbot.git
+   cd Persona_AI_Chatbot/persona-chatbot
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env.local
+   ```
+   Edit `.env.local` and add your Gemini API key:
+   ```
+   GEMINI_API_KEY=your_actual_api_key_here
+   ```
 
-## Deploy on Vercel
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Open** [http://localhost:3000](http://localhost:3000) in your browser
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🎭 The Three Personas
+
+| Persona | Style | Expertise |
+|---|---|---|
+| **Anshuman Singh** | Intense, authoritative, no-nonsense | DSA, System Design, Product Thinking |
+| **Abhimanyu Saxena** | Warm, strategic, philosophical | Career Growth, EdTech Vision, Life Outcomes |
+| **Kshitij Mishra** | Dry humor, disciplinarian, methodical | LLD, Design Patterns, DSA, SOLID Principles |
+
+Each system prompt includes:
+- Detailed persona description with verified background
+- 6-7 few-shot examples
+- 4-step Chain-of-Thought reasoning instruction
+- Output format specification
+- 6-9 behavioral constraints
+
+See [`prompts.md`](./prompts.md) for the full annotated system prompts.
+
+---
+
+## 📝 Documentation
+
+- **[prompts.md](./prompts.md)** — All three system prompts with inline annotations explaining design decisions
+- **[reflection.md](./reflection.md)** — 300-500 word reflection on the project
+
+---
+
+## 🔒 Security
+
+- API key is stored in `.env.local` (gitignored)
+- `.env.example` provides the template without exposing real keys
+- No API keys are committed anywhere in the git history
+
+---
+
+## 📄 License
+
+This project was built as part of the Scaler Academy Prompt Engineering assignment.

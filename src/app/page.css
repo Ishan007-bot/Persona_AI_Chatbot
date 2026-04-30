@@ -26,7 +26,7 @@
 
 /* --- Sidebar --- */
 .app-sidebar {
-  width: 240px;
+  width: 280px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
