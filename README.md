@@ -97,9 +97,17 @@ persona-chatbot/
    ```bash
    cp .env.example .env.local
    ```
-   Edit `.env.local` and add your Gemini API key:
-   ```
-   GEMINI_API_KEY=your_actual_api_key_here
+   Edit `.env.local` and add your Gemini API key. 
+   
+   *Note: To bypass the strict free tier limits (20 requests/minute), this project supports using 3 separate API keys—one for each persona:*
+   ```env
+   # Main fallback key
+   GEMINI_API_KEY=your_primary_key_here
+   
+   # (Optional) Separate keys to triple your rate limit
+   GEMINI_API_KEY_ANSHUMAN=your_anshuman_key_here
+   GEMINI_API_KEY_ABHIMANYU=your_abhimanyu_key_here
+   GEMINI_API_KEY_KSHITIJ=your_kshitij_key_here
    ```
 
 4. **Run the development server**
