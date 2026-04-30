@@ -87,13 +87,13 @@ export async function POST(request) {
 
     // Initialize the model with the system instruction
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.0-flash",
+      model: "gemini-flash-latest",
       systemInstruction: systemPrompt,
       generationConfig: {
         temperature: 0.8,
         topP: 0.9,
         topK: 40,
-        maxOutputTokens: 512,
+        maxOutputTokens: 5000,
       },
     });
 
